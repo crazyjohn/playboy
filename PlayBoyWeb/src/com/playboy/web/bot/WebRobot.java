@@ -3,7 +3,7 @@ package com.playboy.web.bot;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpClient;
 
-public class PlayBot {
+public class WebRobot {
 
 	public static void main(String[] args) throws InterruptedException {
 		Vertx vertx = Vertx.vertx();

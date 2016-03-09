@@ -13,6 +13,7 @@ repositories {
 dependencies {
     compile fileTree(dir: 'lib', include: ['*.jar'])
     compile 'io.vertx:vertx-web:3.2.1'
+    compile 'io.vertx:vertx-mongo-client:3.2.1'
 }
 tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"
