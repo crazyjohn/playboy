@@ -5,6 +5,9 @@ import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
+import io.vertx.ext.web.handler.CookieHandler;
+import io.vertx.ext.web.handler.SessionHandler;
+import io.vertx.ext.web.sstore.LocalSessionStore;
 
 import com.playboy.web.api.WebApi;
 import com.playboy.web.controller.self.Self;
@@ -23,9 +26,15 @@ public class ScaleMode {
 			HttpServer server = vertx.createHttpServer(options);
 			// create router
 			Router router = Router.router(vertx);
+			// cookie
+			router.route().handler(CookieHandler.create());
+			// session handler
+			router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
 			// test case
 			Test testController = new Test();
 			router.route(WebApi.SAY_HI).handler(testController::sayHi);
+			// counter
+			router.route(WebApi.COUNTER).handler(testController::counter);
 			// upload case
 			Self selfController = new Self();
 			// Enable multipart form data parsing
