@@ -1,12 +1,23 @@
 package com.playboy.web.db;
 
-import com.playboy.web.log.Logger;
-
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 
+import com.playboy.web.log.Logger;
+
 public class MongoDBService {
+	protected Vertx vertx;
+	protected MongoClient mongo;
+
+	public MongoDBService(Vertx vertx, JsonObject config) {
+		this.vertx = vertx;
+		mongo = MongoClient.createShared(vertx, config);
+	}
+
+	public MongoClient mongo() {
+		return mongo;
+	}
 
 	public static void main(String[] args) {
 		Vertx vertx = Vertx.vertx();
