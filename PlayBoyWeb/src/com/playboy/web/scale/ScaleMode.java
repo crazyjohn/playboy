@@ -28,8 +28,11 @@ public class ScaleMode {
 			// upload case
 			Self selfController = new Self();
 			// Enable multipart form data parsing
-			Logger.log(String.format("Upload dir: %s", "/upload"));
-			router.route().handler(BodyHandler.create().setUploadsDirectory("/upload"));
+			Logger.log(String.format("Upload dir: %s",
+					System.getProperty("user.dir") + System.getProperty("file.separator") + "upload"));
+			router.route().handler(
+					BodyHandler.create().setUploadsDirectory(
+							System.getProperty("user.dir") + System.getProperty("file.separator") + "upload"));
 			// form
 			router.route("/uploadForm/").handler(selfController::uploadForm);
 			router.route("/form/").handler(selfController::form);

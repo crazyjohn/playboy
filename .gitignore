@@ -7,3 +7,4 @@ PlayBoyWeb/build/
 .recommenders/
 readme/playboy.asta.lock
 readme/vertx.asta.lock
+PlayBoyWeb/upload/
