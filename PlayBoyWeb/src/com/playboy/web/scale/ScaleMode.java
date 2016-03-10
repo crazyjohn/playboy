@@ -6,6 +6,7 @@ import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 
+import com.playboy.web.api.WebApi;
 import com.playboy.web.controller.self.Self;
 import com.playboy.web.controller.test.Test;
 import com.playboy.web.log.Logger;
@@ -24,7 +25,7 @@ public class ScaleMode {
 			Router router = Router.router(vertx);
 			// test case
 			Test testController = new Test();
-			router.route("/hi/").handler(testController::sayHi);
+			router.route(WebApi.SAY_HI).handler(testController::sayHi);
 			// upload case
 			Self selfController = new Self();
 			// Enable multipart form data parsing
@@ -34,8 +35,8 @@ public class ScaleMode {
 					BodyHandler.create().setUploadsDirectory(
 							System.getProperty("user.dir") + System.getProperty("file.separator") + "upload"));
 			// form
-			router.route("/uploadForm/").handler(selfController::uploadForm);
-			router.route("/form/").handler(selfController::form);
+			router.route(WebApi.UPLOAD_FORM).handler(selfController::uploadForm);
+			router.route(WebApi.FORM).handler(selfController::form);
 			// start server
 			server.requestHandler(router::accept).listen(port, result -> {
 				if (result.succeeded()) {

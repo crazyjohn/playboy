@@ -1,8 +1,16 @@
 package com.playboy.web.bot;
 
+import com.playboy.web.api.WebApi;
+
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpClient;
 
+/**
+ * The web robot
+ * 
+ * @author crazyjohn
+ *
+ */
 public class WebRobot {
 
 	public static void main(String[] args) throws InterruptedException {
@@ -12,13 +20,13 @@ public class WebRobot {
 		int sleepTimes = 1;
 		for (int i = 0; i < callTimes; i++) {
 			Thread.sleep(sleepTimes);
-			client.getNow(8080, "127.0.0.1", "/hi/", response -> {
+			client.getNow(8080, "127.0.0.1", WebApi.SAY_HI, response -> {
 				// Logger.log("Received response with status code " +
 				// response.statusCode());
 
 				});
 			// upload
-			client.getNow(8080, "127.0.0.1", "/upload/head/", response -> {
+			client.getNow(8080, "127.0.0.1", WebApi.UPLOAD_FORM, response -> {
 			});
 		}
 		vertx.close();
