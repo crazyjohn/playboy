@@ -1,4 +1,4 @@
-package com.playboy;
+package com.playboy.scale;
 
 import com.playboy.core.log.Logger;
 import com.playboy.net.IoHandler;

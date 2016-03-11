@@ -1,9 +1,11 @@
 package com.playboy;
 
+import com.playboy.scale.ScaleMode;
+
 import io.vertx.core.Vertx;
 
 /**
- * The tcp node;
+ * The play node
  * 
  * @author crazyjohn
  *
