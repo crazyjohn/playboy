@@ -1,20 +1,8 @@
-option java_package = "com.stone.proto";
+option java_package = "com.playboy.proto";
 option java_outer_classname = "MessageTypes";
 
 // 消息类型;
 enum MessageType {
-	// server
-	SERVER_REGISTER_REQUEST = 100;
-	// game register to agent
-	GAME_REGISTER_TO_AGENT = 101;
-	
-	// AG-GA 200-300
-	AG_PLAYER_LOGOUT = 200;
-	GA_PLAYER_LOGOUT_OK = 201;
-
-	// AGForward begin - end
-	AG_FORWARD_BEGIN = 1000;
-	AG_FORWARD_END = 10000;
 	// request login
 	CG_PLAYER_LOGIN = 1001;
 	// login result
@@ -31,18 +19,5 @@ enum MessageType {
 	CG_CREATE_ROLE = 1007;
 	// create role result
 	GC_CREATE_ROLE_RESULT = 1008;
-	// enter scene
-	GC_ENTER_SCENE = 1009;
-	// enter scene ready
-	CG_ENTER_SCENE_READY = 1010;
-	// sync
-	CG_SYNC = 1011;
-	// sync
-	GC_SYNC = 1012;
-	// CG_REQUEST_MOVE
-	CG_REQUEST_MOVE = 1013;
-	// GC_BROADCAST_MOVE
-	GC_BROADCAST_MOVE = 1014;
-	// Scene object appear
-	GC_SCENE_OBJECT_APPEAR = 1015;
+	
 }
