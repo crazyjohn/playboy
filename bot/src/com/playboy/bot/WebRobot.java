@@ -1,9 +1,9 @@
-package com.playboy.web.bot;
-
-import com.playboy.web.api.WebApi;
+package com.playboy.bot;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpClient;
+
+import com.playboy.core.api.WebApi;
 
 /**
  * The web robot

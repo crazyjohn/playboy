@@ -12,7 +12,7 @@ import com.playboy.web.scale.ScaleMode;
  * @author crazyjohn
  *
  */
-public class PlayBoyNode {
+public class PlayBoyWebNode {
 
 	/**
 	 * entrance

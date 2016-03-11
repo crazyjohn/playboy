@@ -3,7 +3,7 @@ package com.playboy.web.testcase;
 import io.vertx.core.Vertx;
 import io.vertx.core.net.NetServer;
 
-import com.playboy.web.log.Logger;
+import com.playboy.core.log.Logger;
 
 public class VertxNetServerCase {
 

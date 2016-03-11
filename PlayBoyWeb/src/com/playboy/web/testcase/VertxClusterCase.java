@@ -5,7 +5,7 @@ import io.vertx.core.VertxOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.MessageConsumer;
 
-import com.playboy.web.log.Logger;
+import com.playboy.core.log.Logger;
 
 public class VertxClusterCase {
 

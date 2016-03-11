@@ -9,10 +9,10 @@ import io.vertx.ext.web.handler.CookieHandler;
 import io.vertx.ext.web.handler.SessionHandler;
 import io.vertx.ext.web.sstore.LocalSessionStore;
 
-import com.playboy.web.api.WebApi;
+import com.playboy.core.api.WebApi;
+import com.playboy.core.log.Logger;
 import com.playboy.web.controller.self.Self;
 import com.playboy.web.controller.test.Test;
-import com.playboy.web.log.Logger;
 
 public class ScaleMode {
 

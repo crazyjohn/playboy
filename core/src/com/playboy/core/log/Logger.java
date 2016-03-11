@@ -1,4 +1,4 @@
-package com.playboy.web.log;
+package com.playboy.core.log;
 
 public class Logger {
 	public static void log(String msg) {

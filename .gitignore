@@ -8,3 +8,8 @@ PlayBoyWeb/build/
 readme/playboy.asta.lock
 readme/vertx.asta.lock
 PlayBoyWeb/upload/
+core/.settings/
+bot/.settings/
+core/.gradle/
+PlayBoy/.gradle/
+PlayBoy/.settings/

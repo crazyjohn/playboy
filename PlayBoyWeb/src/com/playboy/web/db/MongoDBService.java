@@ -4,7 +4,7 @@ import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 
-import com.playboy.web.log.Logger;
+import com.playboy.core.log.Logger;
 
 public class MongoDBService {
 	protected Vertx vertx;

@@ -5,7 +5,7 @@ import io.vertx.ext.web.Session;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.playboy.web.log.Logger;
+import com.playboy.core.log.Logger;
 
 public class Test {
 	static AtomicInteger count = new AtomicInteger(0);

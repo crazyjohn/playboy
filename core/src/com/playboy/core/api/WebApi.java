@@ -1,4 +1,4 @@
-package com.playboy.web.api;
+package com.playboy.core.api;
 
 /**
  * The web api

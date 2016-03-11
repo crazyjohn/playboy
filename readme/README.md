@@ -4,6 +4,12 @@
 ----------
 ![](http://i.imgur.com/VQSnmlt.png)
 
+整体要求:
+
+1. HA。high avaliability高可用。
+2. easy to scale out。很容易横向扩展，支撑大量并发请求。
+3. 可监控。一切都要可监控，要有足够的预警机制。
+4. 编程模型足够简单。
 
 1. load balance
 ----------
@@ -30,7 +36,10 @@
 
 3. net node cluster
 ----------
-聊天这类及时的需求会使用长链tcp解决，也会使用vertx作为解决方案。
+聊天这类及时的需求会使用长链tcp解决，也会使用vertx作为解决方案。特点：
+
+1. 基本无存储。
+2. 会话期间文件可以缓存到client的方式。
 
 4. cache cluster
 ----------
@@ -41,9 +50,10 @@
 5. how to storage photos
 ----------
 图片如何持久化，这是一个问题，会参考facebook,weibo,weixin,instagram等方案：
+
 1. db存储。mysql,mongodb等
 2. tfs。淘宝开源文件系统。
-3. 云服务。
+3. 云服务。AWS，淘宝，又拍云，7N等。
 
 6. db shards
 ----------
@@ -51,7 +61,7 @@
 2. mongdb就直接使用mongos。
 3. cassandra
 
-7. 安全
+7. safety and security
 ----------
 
 1. nginx层的主备以及防洪水攻击和黑名单方案等。
