@@ -11,7 +11,7 @@ public class Robot {
 		Vertx vertx = Vertx.vertx();
 		NetClient client = vertx.createNetClient();
 		String host = "localhost";
-		int port = 8001;
+		int port = 8000;
 		client.connect(port, host, result -> {
 			if (result.succeeded()) {
 				Logger.log(String.format("Connect succeed: %s", result.result().localAddress()));
