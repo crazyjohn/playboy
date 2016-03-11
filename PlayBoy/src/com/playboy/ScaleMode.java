@@ -34,6 +34,8 @@ public class ScaleMode {
 			server.listen(port, result -> {
 				if (result.succeeded()) {
 					Logger.log(String.format("PlayBoyServer listening on port: %d", port));
+				} else {
+					result.cause().printStackTrace();
 				}
 			});
 		}
