@@ -1,4 +1,4 @@
-package com.playboy.bot;
+package com.playboy.bot.web;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpClient;

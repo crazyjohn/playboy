@@ -1,10 +1,11 @@
 package com.playboy;
 
-import com.playboy.core.log.Logger;
-
 import io.vertx.core.Vertx;
 import io.vertx.core.net.NetServer;
 import io.vertx.core.net.NetServerOptions;
+
+import com.playboy.core.log.Logger;
+import com.playboy.net.NetServerIoHandler;
 
 /**
  * The tcp node;
@@ -20,9 +21,19 @@ public class PlayBoyNode {
 		// net server
 		NetServerOptions options = new NetServerOptions();
 		NetServer server = vertx.createNetServer(options);
+		// io things
 		server.connectHandler(socket -> {
-			Logger.log(String.format("Connection comming: %s", socket));
+			Logger.log(String.format("Connection comming: %s", socket.remoteAddress()));
+			NetServerIoHandler ioHandler = new NetServerIoHandler();
+			// received
+			socket.handler(ioHandler::receive);
+			socket.endHandler(ioHandler::end);
+			// close
+			socket.closeHandler(ioHandler::close);
+			// exception
+			socket.exceptionHandler(ioHandler::exception);
 		});
+		// listen on port
 		int port = 8001;
 		server.listen(port, result -> {
 			if (result.succeeded()) {
