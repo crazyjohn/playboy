@@ -15,6 +15,7 @@ public class Robot {
 	}
 
 	public void danceWithMe(String host, int port) {
+
 		client.connect(port, host, result -> {
 			if (result.succeeded()) {
 				Logger.log(String.format("Connect succeed: %s", result.result().localAddress()));
