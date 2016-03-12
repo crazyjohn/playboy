@@ -6,12 +6,15 @@ import io.vertx.core.Vertx;
 import io.vertx.core.net.NetClient;
 
 public class Robot {
+	protected Vertx vertx;
+	protected NetClient client;
 
-	public static void main(String[] args) {
-		Vertx vertx = Vertx.vertx();
-		NetClient client = vertx.createNetClient();
-		String host = "localhost";
-		int port = 8001;
+	public Robot(Vertx vertx) {
+		this.vertx = vertx;
+		client = vertx.createNetClient();
+	}
+
+	public void danceWithMe(String host, int port) {
 		client.connect(port, host, result -> {
 			if (result.succeeded()) {
 				Logger.log(String.format("Connect succeed: %s", result.result().localAddress()));
