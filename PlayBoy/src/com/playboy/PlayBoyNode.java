@@ -16,8 +16,8 @@ public class PlayBoyNode {
 		// create vertx instance
 		Vertx vertx = Vertx.vertx();
 		// scale out mode
-		int port = 8003;
-		ScaleMode.singleMode(vertx, port);
+		int port = 8001;
+		ScaleMode.scaleOutMode(vertx, port, 4);
 	}
 
 }

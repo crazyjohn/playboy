@@ -1,25 +1,28 @@
 package com.playboy.scale;
 
-import com.playboy.core.log.Logger;
-import com.playboy.net.IoHandler;
-
 import io.vertx.core.Vertx;
 import io.vertx.core.net.NetServer;
 import io.vertx.core.net.NetServerOptions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.playboy.net.IoHandler;
+
 public class ScaleMode {
+	private static Logger logger = LoggerFactory.getLogger("Server");
 
 	public static void singleMode(Vertx vertx, int port) {
-		scaleOutMode(vertx, 1, port);
+		scaleOutMode(vertx, port, 1);
 	}
 
-	public static void scaleOutMode(Vertx vertx, int instanceCount, int port) {
+	public static void scaleOutMode(Vertx vertx, int port, int instanceCount) {
 		for (int i = 0; i < instanceCount; i++) {
 			// net server
 			NetServerOptions options = new NetServerOptions();
 			NetServer server = vertx.createNetServer(options);
 			server.connectHandler(socket -> {
-				Logger.log(String.format("Connection comming: %s", socket.remoteAddress()));
+				logger.info(String.format("Connection comming: %s", socket.remoteAddress()));
 				// io things
 				IoHandler ioHandler = new IoHandler(socket);
 				// received
@@ -33,7 +36,7 @@ public class ScaleMode {
 			// listen on port
 			server.listen(port, result -> {
 				if (result.succeeded()) {
-					Logger.log(String.format("PlayBoyServer listening on port: %d", port));
+					logger.info(String.format("PlayBoyServer listening on port: %d", port));
 				} else {
 					result.cause().printStackTrace();
 				}
