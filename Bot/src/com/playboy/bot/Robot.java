@@ -1,6 +1,7 @@
 package com.playboy.bot;
 
 import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
 import io.vertx.core.net.NetClient;
 
 import org.slf4j.Logger;
@@ -22,7 +23,12 @@ public class Robot {
 		client.connect(port, host, result -> {
 			if (result.succeeded()) {
 				logger.info(String.format("Connect succeed: %s, id: %d", result.result().localAddress(), id));
-				result.result().write(String.format("I am ok! id: %d", id));
+				Buffer writeBuffer = Buffer.buffer();
+				writeBuffer.appendShort((short) 1001);
+				writeBuffer.appendInt(0);
+				writeBuffer.appendString(String.format("I am ok! id: %d", id));
+				writeBuffer.setInt(2, writeBuffer.length());
+				result.result().write(writeBuffer);
 			} else {
 				logger.error(String.format("Connect failed: %s:%d, id: %d", host, port, id), result.cause());
 			}

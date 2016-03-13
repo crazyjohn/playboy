@@ -8,9 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.playboy.net.IoHandler;
+import com.playboy.net.PacketDispatcher;
 
 public class ScaleMode {
 	private static Logger logger = LoggerFactory.getLogger("Server");
+	private static PacketDispatcher dispatcher = PacketDispatcher.dispatcher();
 
 	public static void singleMode(Vertx vertx, int port) {
 		scaleOutMode(vertx, port, 1);
@@ -24,7 +26,7 @@ public class ScaleMode {
 			server.connectHandler(socket -> {
 				logger.info(String.format("Connection comming: %s", socket.remoteAddress()));
 				// io things
-				IoHandler ioHandler = new IoHandler(socket);
+				IoHandler ioHandler = new IoHandler(socket, dispatcher);
 				// received
 				socket.handler(ioHandler::receive);
 				socket.endHandler(ioHandler::end);

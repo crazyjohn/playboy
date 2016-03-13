@@ -1,0 +1,9 @@
+option java_package = "com.playboy.proto";
+option java_outer_classname = "Chats";
+
+// chat
+message Chat {
+	required int32 serverId = 1;
+	required int64 playerId = 2;
+	required string content = 3;
+}
