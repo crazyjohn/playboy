@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.playboy.core.net.packet.Packet;
+import com.playboy.core.net.packet.ProtobufPacket;
 import com.playboy.net.dispatch.PacketDispatcher;
 
 /**
@@ -52,7 +53,7 @@ public class IoHandler {
 				break;
 			}
 			// dispatch
-			Packet packet = Packet.packet(type, readBuffer.readBytes(length - Packet.HEAD_SIZE).array());
+			ProtobufPacket packet = Packet.packet(type, readBuffer.readBytes(length - Packet.HEAD_SIZE).array());
 			dispatcher.dispatch(packet);
 		}
 	}

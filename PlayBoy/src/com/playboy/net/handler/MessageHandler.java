@@ -3,25 +3,26 @@ package com.playboy.net.handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.playboy.core.net.packet.Packet;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.playboy.core.net.packet.ProtobufPacket;
+import com.playboy.proto.Chats.Chat;
 
 public interface MessageHandler {
 	Logger logger = LoggerFactory.getLogger("Server");
 
-	short type();
-
-	void handle(Packet packet);
+	void handle(ProtobufPacket packet);
 
 	static MessageHandler dummy() {
 		return new MessageHandler() {
-			@Override
-			public short type() {
-				return 0;
-			}
 
 			@Override
-			public void handle(Packet packet) {
-				logger.info(packet.toString());
+			public void handle(ProtobufPacket packet) {
+				try {
+					Chat.Builder builder = packet.getBuilder(Chat.newBuilder());
+					logger.info(builder.getContent());
+				} catch (InvalidProtocolBufferException e) {
+					logger.error("Parse error", e);
+				}
 			}
 		};
 	}

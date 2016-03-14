@@ -46,6 +46,10 @@ public final class Chats {
   }
   /**
    * Protobuf type {@code Chat}
+   *
+   * <pre>
+   * chat
+   * </pre>
    */
   public static final class Chat extends
       com.google.protobuf.GeneratedMessage implements
@@ -364,6 +368,10 @@ public final class Chats {
     }
     /**
      * Protobuf type {@code Chat}
+     *
+     * <pre>
+     * chat
+     * </pre>
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements

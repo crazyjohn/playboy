@@ -1,5 +1,7 @@
 package com.playboy.core.net.packet;
 
+import io.vertx.core.buffer.Buffer;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Message.Builder;
 
@@ -17,9 +19,10 @@ public class ProtobufPacket implements Packet {
 		return this;
 	}
 
-	public Builder setBuilder(Builder builder) {
+	@SuppressWarnings("unchecked")
+	public <B extends Builder> B setBuilder(B builder) {
 		this.builder = builder;
-		return this.builder;
+		return (B) this.builder;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -40,6 +43,15 @@ public class ProtobufPacket implements Packet {
 	@Override
 	public short type() {
 		return type;
+	}
+
+	public Buffer buffer() {
+		Buffer writeBuffer = Buffer.buffer();
+		writeBuffer.appendShort(this.type);
+		writeBuffer.appendInt(0);
+		writeBuffer.appendBytes(this.builder.build().toByteArray());
+		writeBuffer.setInt(2, writeBuffer.length());
+		return writeBuffer;
 	}
 
 }

@@ -1,10 +1,10 @@
 package com.playboy.net.dispatch;
 
-import com.playboy.core.net.packet.Packet;
+import com.playboy.core.net.packet.ProtobufPacket;
 
 public interface PacketDispatcher {
 
-	void dispatch(Packet packet);
+	void dispatch(ProtobufPacket packet);
 
 	static PacketDispatcher dispatcher() {
 		return new TypeDispatcher();

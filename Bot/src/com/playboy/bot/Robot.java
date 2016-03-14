@@ -1,12 +1,14 @@
 package com.playboy.bot;
 
 import io.vertx.core.Vertx;
-import io.vertx.core.buffer.Buffer;
 import io.vertx.core.net.NetClient;
 import io.vertx.core.net.NetSocket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.playboy.core.net.packet.ProtobufPacket;
+import com.playboy.proto.Chats.Chat;
 
 public class Robot {
 	private Logger logger = LoggerFactory.getLogger("Server");
@@ -38,12 +40,10 @@ public class Robot {
 	}
 
 	private void sayHi(NetSocket socket) {
-		Buffer writeBuffer = Buffer.buffer();
-		writeBuffer.appendShort((short) 1001);
-		writeBuffer.appendInt(0);
-		writeBuffer.appendString(String.format("I am ok! id: %d", id), "UTF-8");
-		writeBuffer.setInt(2, writeBuffer.length());
-		socket.write(writeBuffer);
+		ProtobufPacket packet = new ProtobufPacket((short) 1001);
+		int defaultServerId = 1;
+		packet.setBuilder(Chat.newBuilder()).setServerId(defaultServerId).setPlayerId(id)
+				.setContent(String.format("I am ok! id: %d", id));
+		socket.write(packet.buffer());
 	}
-
 }
