@@ -1,4 +1,4 @@
-package com.playboy.net.packet;
+package com.playboy.core.net.packet;
 
 import io.vertx.core.buffer.Buffer;
 

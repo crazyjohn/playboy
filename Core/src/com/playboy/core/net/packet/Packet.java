@@ -1,4 +1,4 @@
-package com.playboy.net.packet;
+package com.playboy.core.net.packet;
 
 public interface Packet {
 	int MESSAGE_TYPE_LENGTH = 2;

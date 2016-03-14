@@ -3,7 +3,7 @@ package com.playboy.net.handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.playboy.net.packet.Packet;
+import com.playboy.core.net.packet.Packet;
 
 public interface MessageHandler {
 	Logger logger = LoggerFactory.getLogger("Server");

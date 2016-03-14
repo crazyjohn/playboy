@@ -1,6 +1,6 @@
 package com.playboy.net.dispatch;
 
-import com.playboy.net.packet.Packet;
+import com.playboy.core.net.packet.Packet;
 
 public interface PacketDispatcher {
 
