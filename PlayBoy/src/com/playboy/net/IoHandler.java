@@ -28,6 +28,7 @@ public class IoHandler {
 	}
 
 	public void open(NetSocket socket) {
+		logger.info(String.format("Session opened: %s", socket.remoteAddress()));
 	}
 
 	/**
@@ -61,6 +62,7 @@ public class IoHandler {
 	 * @param nothing
 	 */
 	public void close(Void nothing) {
+		logger.info(String.format("Session closed: %s", socket.remoteAddress()));
 	}
 
 	/**

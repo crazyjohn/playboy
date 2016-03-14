@@ -3,6 +3,7 @@ package com.playboy.startup;
 import io.vertx.core.Vertx;
 import io.vertx.core.net.NetServer;
 import io.vertx.core.net.NetServerOptions;
+import io.vertx.core.net.NetSocket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,19 +25,7 @@ public class StartupMode {
 			NetServerOptions options = new NetServerOptions();
 			NetServer server = vertx.createNetServer(options);
 			server.connectHandler(socket -> {
-				logger.info(String.format("Connection comming: %s", socket.remoteAddress()));
-				// io things
-				IoHandler ioHandler = new IoHandler(socket, dispatcher);
-				// open
-				ioHandler.open(socket);
-				// receive
-				socket.handler(ioHandler::receive);
-				// end
-				socket.endHandler(ioHandler::end);
-				// close
-				socket.closeHandler(ioHandler::close);
-				// exception
-				socket.exceptionHandler(ioHandler::exception);
+				ioPrepare(socket);
 			});
 			// listen on port
 			server.listen(port, result -> {
@@ -47,5 +36,20 @@ public class StartupMode {
 				}
 			});
 		}
+	}
+
+	private static void ioPrepare(NetSocket socket) {
+		// io things
+		IoHandler ioHandler = new IoHandler(socket, dispatcher);
+		// open
+		ioHandler.open(socket);
+		// receive
+		socket.handler(ioHandler::receive);
+		// end
+		socket.endHandler(ioHandler::end);
+		// close
+		socket.closeHandler(ioHandler::close);
+		// exception
+		socket.exceptionHandler(ioHandler::exception);
 	}
 }
