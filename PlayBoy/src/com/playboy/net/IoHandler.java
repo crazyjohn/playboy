@@ -8,6 +8,7 @@ import io.vertx.core.net.NetSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.playboy.net.dispatch.PacketDispatcher;
 import com.playboy.net.packet.Packet;
 
 /**

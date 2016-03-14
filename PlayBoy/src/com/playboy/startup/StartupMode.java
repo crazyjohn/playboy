@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.playboy.net.IoHandler;
-import com.playboy.net.PacketDispatcher;
+import com.playboy.net.dispatch.PacketDispatcher;
 
 public class StartupMode {
 	private static Logger logger = LoggerFactory.getLogger("Server");
