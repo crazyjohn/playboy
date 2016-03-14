@@ -26,7 +26,7 @@ public class Robot {
 				Buffer writeBuffer = Buffer.buffer();
 				writeBuffer.appendShort((short) 1001);
 				writeBuffer.appendInt(0);
-				writeBuffer.appendString(String.format("I am ok! id: %d", id));
+				writeBuffer.appendString(String.format("I am ok! id: %d", id), "UTF-8");
 				writeBuffer.setInt(2, writeBuffer.length());
 				result.result().write(writeBuffer);
 			} else {

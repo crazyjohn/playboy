@@ -20,7 +20,7 @@ public interface Packet {
 
 		@Override
 		public String toString() {
-			return buffer.getString(0, buffer.length());
+			return buffer.getString(0, buffer.length(), "UTF-8");
 		}
 	}
 }

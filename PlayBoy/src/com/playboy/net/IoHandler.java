@@ -1,10 +1,14 @@
 package com.playboy.net;
 
-import com.playboy.core.log.Logger;
-import com.playboy.net.packet.Packet;
-
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.net.NetSocket;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.playboy.net.packet.Packet;
 
 /**
  * Io handler
@@ -13,8 +17,9 @@ import io.vertx.core.net.NetSocket;
  *
  */
 public class IoHandler {
+	private Logger logger = LoggerFactory.getLogger("Server");
 	protected NetSocket socket;
-	protected Buffer readBuffer = Buffer.buffer();
+	protected ByteBuf readBuffer = PooledByteBufAllocator.DEFAULT.ioBuffer();
 	protected PacketDispatcher dispatcher;
 
 	public IoHandler(NetSocket socket, PacketDispatcher dispatcher) {
@@ -23,31 +28,33 @@ public class IoHandler {
 	}
 
 	public void receive(Buffer buffer) {
-		readBuffer.appendBuffer(buffer);
-		while (readBuffer.length() > 0) {
-			if (readBuffer.length() < Packet.HEAD_SIZE) {
+		readBuffer.writeBytes(buffer.getBytes());
+		while (readBuffer.isReadable()) {
+			if (readBuffer.readableBytes() < Packet.HEAD_SIZE) {
 				break;
 			}
-			short type = readBuffer.getShort(0);
-			int length = readBuffer.getInt(2);
-			if (readBuffer.length() < length) {
+			// get type and length
+			readBuffer.markReaderIndex();
+			short type = readBuffer.readShort();
+			int length = readBuffer.readInt();
+			if (readBuffer.readableBytes() < length - Packet.HEAD_SIZE) {
+				readBuffer.resetReaderIndex();
 				break;
 			}
 			// dispatch
-			Packet packet = Packet.packet(type, readBuffer.getBytes(6, length - 6));
+			Packet packet = Packet.packet(type, readBuffer.readBytes(length - Packet.HEAD_SIZE).array());
 			dispatcher.dispatch(packet);
-			System.out.println(readBuffer.length());
 		}
-		Logger.log("Call receive: " + buffer.getString(0, buffer.length()));
 	}
 
 	public void close(Void nothing) {
 	}
 
 	public void exception(Throwable e) {
+		logger.error("exception cach", e);
 	}
 
 	public void end(Void nothing) {
-		Logger.log("Call end.");
+		logger.info("Call end: " + socket.remoteAddress());
 	}
 }
