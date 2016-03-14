@@ -27,6 +27,14 @@ public class IoHandler {
 		this.dispatcher = dispatcher;
 	}
 
+	public void open(NetSocket socket) {
+	}
+
+	/**
+	 * The receive callback
+	 * 
+	 * @param buffer
+	 */
 	public void receive(Buffer buffer) {
 		readBuffer.writeBytes(buffer.getBytes());
 		while (readBuffer.isReadable()) {
@@ -47,13 +55,28 @@ public class IoHandler {
 		}
 	}
 
+	/**
+	 * The close callback
+	 * 
+	 * @param nothing
+	 */
 	public void close(Void nothing) {
 	}
 
+	/**
+	 * The exception callback
+	 * 
+	 * @param e
+	 */
 	public void exception(Throwable e) {
 		logger.error("exception cach", e);
 	}
 
+	/**
+	 * What is the fuck??
+	 * 
+	 * @param nothing
+	 */
 	public void end(Void nothing) {
 		logger.info("Call end: " + socket.remoteAddress());
 	}

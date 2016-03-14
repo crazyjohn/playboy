@@ -1,4 +1,4 @@
-package com.playboy.scale;
+package com.playboy.startup;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.net.NetServer;
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.playboy.net.IoHandler;
 import com.playboy.net.PacketDispatcher;
 
-public class ScaleMode {
+public class StartupMode {
 	private static Logger logger = LoggerFactory.getLogger("Server");
 	private static PacketDispatcher dispatcher = PacketDispatcher.dispatcher();
 
@@ -27,8 +27,11 @@ public class ScaleMode {
 				logger.info(String.format("Connection comming: %s", socket.remoteAddress()));
 				// io things
 				IoHandler ioHandler = new IoHandler(socket, dispatcher);
-				// received
+				// open
+				ioHandler.open(socket);
+				// receive
 				socket.handler(ioHandler::receive);
+				// end
 				socket.endHandler(ioHandler::end);
 				// close
 				socket.closeHandler(ioHandler::close);

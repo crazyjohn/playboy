@@ -1,6 +1,6 @@
 package com.playboy;
 
-import com.playboy.scale.ScaleMode;
+import com.playboy.startup.StartupMode;
 
 import io.vertx.core.Vertx;
 
@@ -17,7 +17,7 @@ public class PlayBoyNode {
 		Vertx vertx = Vertx.vertx();
 		// scale out mode
 		int port = 8001;
-		ScaleMode.scaleOutMode(vertx, port, 4);
+		StartupMode.scaleOutMode(vertx, port, 4);
 	}
 
 }

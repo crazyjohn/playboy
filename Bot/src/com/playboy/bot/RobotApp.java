@@ -8,7 +8,7 @@ public class RobotApp {
 		String host = "localhost";
 		int port = 8001;
 		final long from = 0;
-		final long to = 0;
+		final long to = 10;
 		Vertx vertx = Vertx.vertx();
 		for (long i = from; i <= to; i++) {
 			Robot bot = new Robot(vertx, i);
