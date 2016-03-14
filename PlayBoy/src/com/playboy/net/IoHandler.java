@@ -35,6 +35,8 @@ public class IoHandler {
 
 	/**
 	 * The receive callback
+	 * <p>
+	 * FIXME: crazyjohn not done yet!
 	 * 
 	 * @param buffer
 	 */
@@ -55,6 +57,12 @@ public class IoHandler {
 			// dispatch
 			ProtobufPacket packet = Packet.packet(type, readBuffer.readBytes(length - Packet.HEAD_SIZE).array());
 			dispatcher.dispatch(packet);
+		}
+		// compact
+		if (readBuffer.isReadable()) {
+			readBuffer.discardReadBytes();
+		} else {
+			readBuffer.clear();
 		}
 	}
 
