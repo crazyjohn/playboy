@@ -18,3 +18,5 @@ Deploy/.settings/
 Bot/logs/
 PlayBoy/logs/
 Bot/.gradle/
+.gradle/
+.settings/
