@@ -1,0 +1,30 @@
+option java_package = "com.playboy.proto";
+option java_outer_classname = "Players";
+
+// 玩家账户信息
+message AccountInfo {
+	required int64 id = 1;
+	required string name = 2;
+	required int64 birthday = 3;
+	required string phoneNum = 4;
+	optional string password = 5;
+}
+
+// 个人信息
+message SelfInfo {
+	required int64 id = 1;
+	optional string career = 2;
+	optional string hometown = 3;
+	optional string place = 4;
+	optional string sign = 5;
+}
+
+// 简单其它玩家信息
+message PlayerInfo {
+	required int64 id = 1;
+	required string name = 2;
+	required int64 birthday = 3;
+	required SelfInfo info = 4;
+}
+
+

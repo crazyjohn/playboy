@@ -1,4 +1,4 @@
-package com.playboy.net.handler;
+package com.playboy.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

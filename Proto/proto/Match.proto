@@ -1,0 +1,27 @@
+option java_package = "com.playboy.proto";
+option java_outer_classname = "Matches";
+import "Player.proto";
+
+// 发起匹配请求
+message Match {
+	required int32 areaId = 1;
+}
+
+// 简单的匹配信息
+message MatchInfo {
+	required int32 serverId = 1;
+	required int32 areaId = 2;
+	required int64 playerId = 3;
+}
+
+// 返回匹配结果
+message MatchResult {
+	repeated MatchInfo infos = 1;
+}
+
+// 单条匹配详细信息
+message MatchDetail {
+	required int64 id = 1;
+	required PlayerInfo info = 2; 
+}
+

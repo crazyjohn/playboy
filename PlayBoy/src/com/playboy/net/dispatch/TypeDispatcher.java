@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.playboy.core.net.packet.ProtobufPacket;
-import com.playboy.net.handler.MessageHandler;
+import com.playboy.handler.MessageHandler;
 
 public class TypeDispatcher implements PacketDispatcher {
 	private Map<Short, MessageHandler> handlers = new HashMap<Short, MessageHandler>();
