@@ -10,8 +10,11 @@ public class ProtobufPacket implements Packet {
 	private Builder builder;
 	private byte[] bodyBytes;
 
-	public ProtobufPacket(short type) {
-		this.type = type;
+	public ProtobufPacket(int type) {
+		if (type > Short.MAX_VALUE) {
+			throw new IllegalArgumentException(String.format("More than max value: %d", type));
+		}
+		this.type = (short) type;
 	}
 
 	public ProtobufPacket setBody(byte[] bodyBytes) {

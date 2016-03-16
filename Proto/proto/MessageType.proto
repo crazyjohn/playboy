@@ -11,5 +11,9 @@ enum MessageType {
 	CG_MATCH = 1003;
 	// match result
 	GC_MATCH_RESULT = 1004;
+	// chat
+	CG_CHAT = 1005;
+	GC_CHAT = 1006;
+	
 	
 }

@@ -49,6 +49,18 @@ public final class MessageTypes {
      * </pre>
      */
     GC_MATCH_RESULT(3, 1004),
+    /**
+     * <code>CG_CHAT = 1005;</code>
+     *
+     * <pre>
+     * chat
+     * </pre>
+     */
+    CG_CHAT(4, 1005),
+    /**
+     * <code>GC_CHAT = 1006;</code>
+     */
+    GC_CHAT(5, 1006),
     ;
 
     /**
@@ -83,6 +95,18 @@ public final class MessageTypes {
      * </pre>
      */
     public static final int GC_MATCH_RESULT_VALUE = 1004;
+    /**
+     * <code>CG_CHAT = 1005;</code>
+     *
+     * <pre>
+     * chat
+     * </pre>
+     */
+    public static final int CG_CHAT_VALUE = 1005;
+    /**
+     * <code>GC_CHAT = 1006;</code>
+     */
+    public static final int GC_CHAT_VALUE = 1006;
 
 
     public final int getNumber() { return value; }
@@ -93,6 +117,8 @@ public final class MessageTypes {
         case 1002: return GC_LOGIN_RESULT;
         case 1003: return CG_MATCH;
         case 1004: return GC_MATCH_RESULT;
+        case 1005: return CG_CHAT;
+        case 1006: return GC_CHAT;
         default: return null;
       }
     }
@@ -153,10 +179,11 @@ public final class MessageTypes {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021MessageType.proto*W\n\013MessageType\022\r\n\010CG" +
+      "\n\021MessageType.proto*s\n\013MessageType\022\r\n\010CG" +
       "_LOGIN\020\351\007\022\024\n\017GC_LOGIN_RESULT\020\352\007\022\r\n\010CG_MA" +
-      "TCH\020\353\007\022\024\n\017GC_MATCH_RESULT\020\354\007B!\n\021com.play" +
-      "boy.protoB\014MessageTypes"
+      "TCH\020\353\007\022\024\n\017GC_MATCH_RESULT\020\354\007\022\014\n\007CG_CHAT\020" +
+      "\355\007\022\014\n\007GC_CHAT\020\356\007B!\n\021com.playboy.protoB\014M" +
+      "essageTypes"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

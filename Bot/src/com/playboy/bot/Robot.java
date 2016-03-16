@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.playboy.core.net.packet.ProtobufPacket;
 import com.playboy.proto.Chats.Chat;
+import com.playboy.proto.MessageTypes.MessageType;
 
 public class Robot {
 	private Logger logger = LoggerFactory.getLogger("Server");
@@ -40,7 +41,7 @@ public class Robot {
 	}
 
 	private void sayHi(NetSocket socket) {
-		ProtobufPacket packet = new ProtobufPacket((short) 1001);
+		ProtobufPacket packet = new ProtobufPacket(MessageType.CG_CHAT_VALUE);
 		int defaultServerId = 1;
 		packet.setBuilder(Chat.newBuilder()).setServerId(defaultServerId).setPlayerId(id)
 				.setContent(String.format("I am ok! id: %d", id));
